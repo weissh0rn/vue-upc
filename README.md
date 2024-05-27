@@ -1,51 +1,43 @@
 # vue-upc
 
-This template should help get you started developing with Vue 3 in Vite.
+## Ukraine Population Calculator
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
 ```
+Viacheslav Us
+NTUU "KPI"
+KV-32mp
+Ukraine population calculator
 
-### Compile and Hot-Reload for Development
+**Task:**
+Develop a Web Application "Ukraine Population Calculator".
+It should have the following functionalities:
 
-```sh
-npm run dev
+1. Retrieve data about the population in various regions of Ukraine
+(provinces, provincial capitals, cities with a population of 100,000 or more).
+2. Ability to select by gender (male, female, or both).
+3. Option to select age groups.
+
 ```
+[Google Docs laboratory report #1](https://docs.google.com/document/d/1DO1GnepdvU4uVFkebUllpr9_WH6HBv6UIGImmIhkV3E/edit\)
+[github](https://github.com/weissh0rn/vue-upc)
 
-### Compile and Minify for Production
 
-```sh
-npm run build
+## Калькулятор населення України
+
 ```
+В'ячеслав Ус
+НТУУ "КПІ"
+ФПМ КВ-32мп
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+**Завдання:**
+Розробити Web-додаток "Калькулятор населення України".
+Він повиненен мати наступний функціонал:
 
-```sh
-npm run test:unit
+1). отримання даних про населення України в різних регіонах
+(області, обласні центри, міста з населенням 100тис. і більше);
+2). можливість вибору статі (чоловіча, жіноча або разом);
+3). можливість вибору вікових груп;
 ```
+[Звіт Лабораторна робота №1](https://docs.google.com/document/d/1DO1GnepdvU4uVFkebUllpr9_WH6HBv6UIGImmIhkV3E/edit\)
+[github](https://github.com/weissh0rn/vue-upc)
 
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
-
-```sh
-npm run test:e2e:dev
-```
-
-This runs the end-to-end tests against the Vite development server.
-It is much faster than the production build.
-
-But it's still recommended to test the production build with `test:e2e` before deploying (e.g. in CI environments):
-
-```sh
-npm run build
-npm run test:e2e
-```
