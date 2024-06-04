@@ -3,22 +3,22 @@ import { defineStore } from 'pinia';
 
 export const usePopulationStore = defineStore('population', {
   state: () => ({
-		// The full list of the cities, regions, ages, types and waves
+    // The full list of the cities, regions, ages, types and waves
     uniqueCities: [],
     uniqueRegions: [],
     uniqueAges: [],
     uniqueTypes: [],
     uniqueWaves: [],
-		// The full population data list
+    // The full population data list
     populationData: [],
     // Save filtered data
     filteredPopulationDataCities: [],
-    filteredPopulationDataRegion: [],
-		// The selected data of the cities, regions ...
+    filteredPopulationDataRegions: [],
+    // The selected data of the cities, regions ...
     selectedCities: [],
     selectedRegions: [],
-		selectedAgeFrom: null,
-		selectedAgeTo: null,
+    selectedAgeFrom: null,
+    selectedAgeTo: null,
     selectedSex: null,
     selectedType: null,
     selectedWaves: null,
@@ -27,6 +27,14 @@ export const usePopulationStore = defineStore('population', {
       males: "Чоловіки",
       females: "Жінки"
     },
+    // Save total population for Cities:
+    totalBothSexesCities: 0,
+    totalMalesCities: 0,
+    totalFemalesCities: 0,
+    // Save total population for Regions:
+    totalBothSexesRegions: 0,
+    totalMalesRegions: 0,
+    totalFemalesRegions: 0,
   }),
 
   actions: {
@@ -52,29 +60,43 @@ export const usePopulationStore = defineStore('population', {
       const selectedAgeTo = this.selectedAgeTo;
 
       // Фільтруємо дані відповідно до обраних параметрів
-      this.filteredPopulationDataCities = this.populationData.filter(item => {
+      const filteredDataCities = this.populationData.filter(item => {
         let matchCities = !selectedCities.length || selectedCities.includes(item.city);
         let matchAge = (!selectedAgeFrom || item.age >= selectedAgeFrom) && (!selectedAgeTo || item.age <= selectedAgeTo);
 
         return matchCities && matchAge;
       });
+
+      // Оновлюємо загальне населення по статях для міст
+      this.totalBothSexesCities = filteredDataCities.reduce((sum, item) => sum + item.both_sexes, 0);
+      this.totalMalesCities = filteredDataCities.reduce((sum, item) => sum + item.males, 0);
+      this.totalFemalesCities = filteredDataCities.reduce((sum, item) => sum + item.females, 0);
+
+      this.filteredPopulationDataCities = filteredDataCities;
     },
 
     // Функція для фільтрації populationData для регіонів:
-    filterPopulationDataRegion() {
+    filterPopulationDataRegions() {
       const selectedRegions = this.selectedRegions;
       const selectedAgeFrom = this.selectedAgeFrom;
       const selectedAgeTo = this.selectedAgeTo;
       const selectedType = this.selectedType;
 
       // Filter the data based on selected parameters
-      this.filteredPopulationDataRegion = this.populationData.filter(item => {
+      const filteredDataRegions = this.populationData.filter(item => {
         let matchRegions = !selectedRegions.length || selectedRegions.includes(item.region);
         let matchAge = (!selectedAgeFrom || item.age >= selectedAgeFrom) && (!selectedAgeTo || item.age <= selectedAgeTo);
         let matchType = !selectedType || item.type === selectedType;
 
         return matchRegions && matchAge && matchType;
       });
+
+      // Оновлюємо загальне населення по статях для регіонів
+      this.totalBothSexesRegions = filteredDataRegions.reduce((sum, item) => sum + item.both_sexes, 0);
+      this.totalMalesRegions = filteredDataRegions.reduce((sum, item) => sum + item.males, 0);
+      this.totalFemalesRegions = filteredDataRegions.reduce((sum, item) => sum + item.females, 0);
+
+      this.filteredPopulationDataRegions = filteredDataRegions;
     },
 
     setPopulationData(data) {
@@ -106,7 +128,7 @@ export const usePopulationStore = defineStore('population', {
       this.selectedRegions = regions;
       console.log(this.selectedRegions);
     },
-		setSelectedAgeFrom(age) {
+    setSelectedAgeFrom(age) {
       this.selectedAgeFrom = age;
       console.log(this.selectedAgeFrom);
     },

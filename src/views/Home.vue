@@ -13,8 +13,8 @@ const filterPopulationCities = computed(() => {
 
 // Call filterPopulationData whenever the selected parameters change
 const filterPopulationRegion = computed(() => {
-  populationStore.filterPopulationDataRegion();
-  return populationStore.filteredPopulationDataRegion;
+  populationStore.filterPopulationDataRegions();
+  return populationStore.filteredPopulationDataRegions;
 });
 
 // Створення computed property для отримання унікальних даних з populationStore
@@ -25,14 +25,17 @@ const uniqueTypes = computed(() => populationStore.uniqueTypes);
 const sexOptions = computed(() => populationStore.sexOptions);
 const waves = computed(() => populationStore.uniqueWaves);
 
+// Створення computed property для отримання загальних даних про населення з populationStore
+const totalBothSexesCities = computed(() => populationStore.totalBothSexesCities);
+const totalMalesCities = computed(() => populationStore.totalMalesCities);
+const totalFemalesCities = computed(() => populationStore.totalFemalesCities);
+
+// Створення computed property для отримання загальних даних про населення Regions
+const totalBothSexesRegions = computed(() => populationStore.totalBothSexesRegions);
+const totalMalesRegions = computed(() => populationStore.totalMalesRegions);
+const totalFemalesRegions = computed(() => populationStore.totalFemalesRegions);
+
 // Функції для збереження вибраних даних в populationStore
-
-/*
-function saveSelectedCities(event) {
-  populationStore.setSelectedCities(event.target.value);
-}
-*/
-
 function saveSelectedCities(event) {
   const city = event.target.value;
   if (!populationStore.selectedCities.includes(city)) {
@@ -40,8 +43,18 @@ function saveSelectedCities(event) {
   }
 }
 
+/*
 function saveSelectedRegions(event) {
   populationStore.setSelectedRegions(event.target.value);
+}
+*/
+
+// Функції для збереження вибраних даних Regions в populationStore
+function saveSelectedRegions(event) {
+  const region = event.target.value;
+  if (!populationStore.selectedRegions.includes(region)) {
+    populationStore.setSelectedRegions([...populationStore.selectedRegions, region]);
+  }
 }
 
 function saveSelectedAgeFrom(event) {
@@ -63,7 +76,6 @@ function saveSelectedSex(event) {
 onMounted(() => {
   populationStore.loadInitialData();
 });
-
 </script>
 
 <template>
@@ -107,7 +119,7 @@ onMounted(() => {
       </div>
 
 			<div class="types">
-				<h3>Select Population Type:</h3>
+				<h3>Select Type:</h3>
 				<select @change="saveSelectedType($event)">
           <option disabled selected>Population Type</option>
 					<option v-for="type in uniqueTypes" :key="type" :value="type">
@@ -133,6 +145,39 @@ onMounted(() => {
 				</ul>
 			</div>
 
+    </div>
+
+    <div class="container">
+      <div class="list-container">
+
+        <div>
+          <h4>Загальне населення по містах:</h4>
+          <ul>
+            <li>Обидві статі: {{ totalBothSexesCities }}</li>
+            <li>Чоловіки: {{ totalMalesCities }}</li>
+            <li>Жінки: {{ totalFemalesCities }}</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Загальне населення по регіонах:</h4>
+          <ul>
+            <li>Обидві статі: {{ totalBothSexesRegions }}</li>
+            <li>Чоловіки: {{ totalMalesRegions }}</li>
+            <li>Жінки: {{ totalFemalesRegions }}</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4>Загальні дані:</h4>
+          <ul>
+            <li>Обидві статі: {{ totalBothSexesCities + totalBothSexesRegions }}</li>
+            <li>Чоловіки: {{ totalMalesRegions }}</li>
+            <li>Жінки: {{ totalFemalesRegions }}</li>
+          </ul>
+        </div>
+
+     </div>
     </div>
 
     <div>
