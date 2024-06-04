@@ -54,6 +54,7 @@ export const usePopulationStore = defineStore('population', {
     },
 
     // Функція для фільтрації populationData за обраними параметрами та зберігання результату
+    /*
     filterPopulationDataCities() {
       const selectedCities = this.selectedCities;
       const selectedAgeFrom = this.selectedAgeFrom;
@@ -74,6 +75,39 @@ export const usePopulationStore = defineStore('population', {
 
       this.filteredPopulationDataCities = filteredDataCities;
     },
+    */
+
+    filterPopulationDataCities() {
+      const selectedCities = this.selectedCities;
+      const selectedAgeFrom = this.selectedAgeFrom;
+      const selectedAgeTo = this.selectedAgeTo;
+
+      // Check if selectedCities is empty
+      if (selectedCities.length === 0) {
+        // Set total population values to zero
+        this.totalBothSexesCities = 0;
+        this.totalMalesCities = 0;
+        this.totalFemalesCities = 0;
+        this.filteredPopulationDataCities = [];
+        return;
+      }
+
+      // Filter the data based on selected parameters
+      const filteredDataCities = this.populationData.filter(item => {
+        let matchCities = !selectedCities.length || selectedCities.includes(item.city);
+        let matchAge = (!selectedAgeFrom || item.age >= selectedAgeFrom) && (!selectedAgeTo || item.age <= selectedAgeTo);
+
+        return matchCities && matchAge;
+      });
+
+      // Update total population values
+      this.totalBothSexesCities = filteredDataCities.reduce((sum, item) => sum + item.both_sexes, 0);
+      this.totalMalesCities = filteredDataCities.reduce((sum, item) => sum + item.males, 0);
+      this.totalFemalesCities = filteredDataCities.reduce((sum, item) => sum + item.females, 0);
+
+      this.filteredPopulationDataCities = filteredDataCities;
+    },
+
 
     // Функція для фільтрації populationData для регіонів:
     filterPopulationDataRegions() {
@@ -81,6 +115,15 @@ export const usePopulationStore = defineStore('population', {
       const selectedAgeFrom = this.selectedAgeFrom;
       const selectedAgeTo = this.selectedAgeTo;
       const selectedType = this.selectedType;
+
+      if (selectedRegions.length === 0) {
+        // Set total population values to zero
+        this.totalBothSexesRegions = 0;
+        this.totalMalesRegions = 0;
+        this.totalFemalesRegions = 0;
+        this.filteredPopulationDataRegions = [];
+        return;
+      }
 
       // Filter the data based on selected parameters
       const filteredDataRegions = this.populationData.filter(item => {

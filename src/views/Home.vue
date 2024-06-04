@@ -169,7 +169,7 @@ onMounted(() => {
         </div>
 
         <div>
-          <h4>Загальні дані:</h4>
+          <h4>Загальні дані населення:</h4>
           <ul>
             <li>Обидві статі: {{ totalBothSexesCities + totalBothSexesRegions }}</li>
             <li>Чоловіки: {{ totalMalesRegions }}</li>
