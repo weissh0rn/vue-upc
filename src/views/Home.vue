@@ -1,37 +1,64 @@
 // Home.vue
 <script setup>
 import { onMounted, computed } from 'vue';
-import { usePopulationStore } from '@/components/calc/population.js'; // Перевірте шлях
+import { usePopulationStore } from '@/components/calc/population.js';
 
 const populationStore = usePopulationStore();
 
+// Call filterPopulationData whenever the selected parameters change
+const filterPopulationCities = computed(() => {
+  populationStore.filterPopulationDataCities();
+  return populationStore.filteredPopulationDataCities;
+});
+
+// Call filterPopulationData whenever the selected parameters change
+const filterPopulationRegion = computed(() => {
+  populationStore.filterPopulationDataRegion();
+  return populationStore.filteredPopulationDataRegion;
+});
+
+// Створення computed property для отримання унікальних даних з populationStore
+const uniqueCities = computed(() => populationStore.uniqueCities);
+const uniqueRegions = computed(() => populationStore.uniqueRegions);
+const uniqueAges = computed(() => populationStore.uniqueAges);
+const uniqueTypes = computed(() => populationStore.uniqueTypes);
+const sexOptions = computed(() => populationStore.sexOptions);
 const waves = computed(() => populationStore.uniqueWaves);
-const displayData = computed(() => populationStore.populationData);
 
-// Створення computed property для отримання унікальних даних про міста
-const uniqueCities= computed(() => {
-  return populationStore.uniqueCities;
-});
+// Функції для збереження вибраних даних в populationStore
 
-// Створення computed property для отримання унікальних даних про регіони
-const uniqueRegions= computed(() => {
-  return populationStore.uniqueRegions;
-});
+/*
+function saveSelectedCities(event) {
+  populationStore.setSelectedCities(event.target.value);
+}
+*/
 
-// Створення computed property для отримання унікальних даних про вік
-const uniqueAges = computed(() => {
-  return populationStore.uniqueAges;
-});
+function saveSelectedCities(event) {
+  const city = event.target.value;
+  if (!populationStore.selectedCities.includes(city)) {
+    populationStore.setSelectedCities([...populationStore.selectedCities, city]);
+  }
+}
 
-// Створення computed property для отримання унікальних типів населення
-const uniqueTypes = computed(() => {
-  return populationStore.uniqueTypes;
-});
+function saveSelectedRegions(event) {
+  populationStore.setSelectedRegions(event.target.value);
+}
 
-// Створення computed property для отримання опцій статі
-const sexOptions = computed(() => {
-  return populationStore.sexOptions;
-});
+function saveSelectedAgeFrom(event) {
+  populationStore.setSelectedAgeFrom(event.target.value);
+}
+
+function saveSelectedAgeTo(event) {
+  populationStore.setSelectedAgeTo(event.target.value);
+}
+
+function saveSelectedType(event) {
+  populationStore.setSelectedType(event.target.value);
+}
+
+function saveSelectedSex(event) {
+  populationStore.setSelectedSex(event.target.value);
+}
 
 onMounted(() => {
   populationStore.loadInitialData();
@@ -43,18 +70,20 @@ onMounted(() => {
   <div class="container">
     <div class="list-container">
 
-      <div class="cities">
-        <h3>Select City</h3>
-				<select>
+			<div class="cities">
+				<h3>Select City</h3>
+				<select @change="saveSelectedCities($event)">
+          <option disabled selected>Select City</option>
 					<option v-for="city in uniqueCities" :key="city" :value="city">
 					{{ city }}
 					</option>
 				</select>
-      </div>
+			</div>
 
       <div class="regions">
         <h3>Select Region</h3>
-				<select>
+				<select @change="saveSelectedRegions($event)">
+          <option disabled selected>Select Region</option>
 					<option v-for="region in uniqueRegions" :key="region" :value="region">
 					{{ region }}
 					</option>
@@ -63,16 +92,24 @@ onMounted(() => {
 
       <div class="ages">
         <h3>Select Age</h3>
-				<select>
+				<select @change="saveSelectedAgeFrom($event)">
+          <option disabled selected>From</option>
+					<option v-for="age in uniqueAges" :key="age" :value="age">
+					{{ age }}
+					</option>
+				</select>
+				<select @change="saveSelectedAgeTo($event)">
+          <option disabled selected>_To_</option>
 					<option v-for="age in uniqueAges" :key="age" :value="age">
 					{{ age }}
 					</option>
 				</select>
       </div>
 
-      <div class="types">
+			<div class="types">
 				<h3>Select Population Type:</h3>
-				<select>
+				<select @change="saveSelectedType($event)">
+          <option disabled selected>Population Type</option>
 					<option v-for="type in uniqueTypes" :key="type" :value="type">
 					{{ type }}
 					</option>
@@ -81,7 +118,8 @@ onMounted(() => {
 
 			<div class="sexs">
 				<h3>Select Sex:</h3>
-				<select>
+				<select @change="saveSelectedSex($event)">
+          <option disabled selected>Select Sex</option>
 					<option v-for="(label, value) in sexOptions" :key="value" :value="value">
 					{{ label }}
 					</option>
@@ -97,16 +135,26 @@ onMounted(() => {
 
     </div>
 
-		<div>
-			<h3>Population Data:</h3>
-			<ul>
-				<li v-for="item in displayData" :key="item.id">
-					Age: {{ item.age }}, Both Sexes: {{ item.both_sexes }}, Males: {{ item.males }},
-					Females: {{ item.females }}, Region: {{ item.region }},
-					Type: {{ item.type }}, City: {{ item.city }}, Wave: {{ item.wave }}
-				</li>
-			</ul>
-		</div>
+    <div>
+      <h3>Результати пошуку по містах:</h3>
+      <ul>
+        <li v-for="item in filterPopulationCities" :key="item.id">
+          Age: {{ item.age }}, Both Sexes: {{ item.both_sexes }}, Males: {{ item.males }},
+          Females: {{ item.females }}, Region: {{ item.region }},
+          Type: {{ item.type }}, City: {{ item.city }}, Wave: {{ item.wave }}
+        </li>
+      </ul>
+    </div>
+    <div>
+      <h3>Результати пошуку по регіонах:</h3>
+      <ul>
+        <li v-for="item in filterPopulationRegion" :key="item.id">
+          Age: {{ item.age }}, Both Sexes: {{ item.both_sexes }}, Males: {{ item.males }},
+          Females: {{ item.females }}, Region: {{ item.region }},
+          Type: {{ item.type }}, City: {{ item.city }}, Wave: {{ item.wave }}
+        </li>
+      </ul>
+    </div>
 
   </div>
 </template>
