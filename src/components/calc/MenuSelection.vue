@@ -22,7 +22,7 @@ function clearSelections() {
 <template>
   <div class="selectors">
     <div class="cities">
-      <label for="city-select">Select Cities</label>
+      <label for="city-select">Вибір міст:</label>
       <v-select 
         id="city-select"
         :options="uniqueCities" 
@@ -37,7 +37,7 @@ function clearSelections() {
     </div>
     
     <div class="regions">
-      <label for="region-select">Select Regions</label>
+      <label for="region-select">Вибір регіонів:</label>
       <v-select 
         id="region-select"
         :options="uniqueRegions" 
@@ -52,7 +52,7 @@ function clearSelections() {
     </div>
 
     <div class="ages">
-      <label>Select Age</label>
+      <label>Вибір віку:</label>
       <div class="age-selectors">
         <v-select 
           id="age-from-select"
@@ -63,7 +63,7 @@ function clearSelections() {
           :reduce="age => age"
           v-model="populationStore.selectedAgeFrom"
           class="custom-select age-select"
-          placeholder="From"
+          placeholder="Від"
         />
         <v-select 
           id="age-to-select"
@@ -74,13 +74,13 @@ function clearSelections() {
           :reduce="age => age"
           v-model="populationStore.selectedAgeTo"
           class="custom-select age-select"
-          placeholder="To"
+          placeholder="До"
         />
       </div>
     </div>
 
     <div class="types">
-      <label for="type-select">Select Type</label>
+      <label for="type-select">Вибір типу населення:</label>
       <v-select 
         id="type-select"
         :options="uniqueTypes"
@@ -94,7 +94,7 @@ function clearSelections() {
     </div>
 
     <div class="sexs">
-      <label for="sex-select">Select Sex</label>
+      <label for="sex-select">Вибір статі:</label>
       <v-select 
         id="sex-select"
         :options="Object.keys(sexOptions).map(key => ({ value: key, label: sexOptions[key] }))"
@@ -108,7 +108,7 @@ function clearSelections() {
     </div>
 
     <div class="waves">
-      <label for="wave-select">Available Waves</label>
+      <label for="wave-select">Вибір оновлення:</label>
       <v-select 
         id="wave-select"
         :options="waves"

@@ -1,6 +1,6 @@
 // Home.vue
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, computed } from 'vue';
 import { usePopulationStore } from '@/components/calc/population.js';
 import MenuSelection from '@/components/calc/MenuSelection.vue';
 import PopulationSummary from '@/components/calc/PopulationSummary.vue';
@@ -8,6 +8,8 @@ import SearchResultsCities from '@/components/calc/SearchResultsCities.vue';
 import SearchResultsRegions from '@/components/calc/SearchResultsRegions.vue';
 
 const populationStore = usePopulationStore();
+
+const selectedSex = computed(() => populationStore.selectedSex);
 
 onMounted(() => {
   populationStore.loadInitialData();
@@ -18,7 +20,7 @@ onMounted(() => {
   <div class="container">
     <div class="left-panel">
       <MenuSelection />
-      <PopulationSummary />
+      <PopulationSummary :selectedSex="selectedSex" />
     </div>
     <div class="right-panel">
       <SearchResultsCities />
@@ -35,13 +37,13 @@ onMounted(() => {
 }
 
 .left-panel {
-  width: 30%; /* Ліва панель займає 50% ширини */
+  width: 30%; /* Ліва панель займає 30% ширини */
   padding: 10px;
   box-sizing: border-box;
 }
 
 .right-panel {
-  width: 70%; /* Права панель займає 50% ширини */
+  width: 70%; /* Права панель займає 70% ширини */
   padding: 10px;
   box-sizing: border-box;
   display: flex;
