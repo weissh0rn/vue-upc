@@ -53,30 +53,6 @@ export const usePopulationStore = defineStore('population', {
       }
     },
 
-    // Функція для фільтрації populationData за обраними параметрами та зберігання результату
-    /*
-    filterPopulationDataCities() {
-      const selectedCities = this.selectedCities;
-      const selectedAgeFrom = this.selectedAgeFrom;
-      const selectedAgeTo = this.selectedAgeTo;
-
-      // Фільтруємо дані відповідно до обраних параметрів
-      const filteredDataCities = this.populationData.filter(item => {
-        let matchCities = !selectedCities.length || selectedCities.includes(item.city);
-        let matchAge = (!selectedAgeFrom || item.age >= selectedAgeFrom) && (!selectedAgeTo || item.age <= selectedAgeTo);
-
-        return matchCities && matchAge;
-      });
-
-      // Оновлюємо загальне населення по статях для міст
-      this.totalBothSexesCities = filteredDataCities.reduce((sum, item) => sum + item.both_sexes, 0);
-      this.totalMalesCities = filteredDataCities.reduce((sum, item) => sum + item.males, 0);
-      this.totalFemalesCities = filteredDataCities.reduce((sum, item) => sum + item.females, 0);
-
-      this.filteredPopulationDataCities = filteredDataCities;
-    },
-    */
-
     filterPopulationDataCities() {
       const selectedCities = this.selectedCities;
       const selectedAgeFrom = this.selectedAgeFrom;
@@ -189,6 +165,18 @@ export const usePopulationStore = defineStore('population', {
     },
     setSelectedWaves(waves) {
       this.selectedWaves = waves;
+    },
+
+    clearSelections() {
+      this.selectedCities = [];
+      this.selectedRegions = [];
+      this.selectedAgeFrom = null;
+      this.selectedAgeTo = null;
+      this.selectedSex = null;
+      this.selectedType = null;
+      this.selectedWaves = null;
+      this.filterPopulationDataCities();
+      this.filterPopulationDataRegions();
     },
   }
 });
