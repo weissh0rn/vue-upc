@@ -52,7 +52,7 @@ const totalFemalesRegions = computed(() => populationStore.totalFemalesRegions);
 <style scoped>
 .summary-table {
   margin-top: 20px;
-  width: 20%;
+  width: 100%; /* Змінюємо ширину таблиці */
 }
 
 table {
@@ -68,12 +68,12 @@ th, td {
 
 th {
   background-color: #f4f4f4;
-  font-size: 0.9em; /* Зменшуємо розмір тексту */
+  font-size: 1.0em; 
 }
 
 td {
   text-align: center;
-  font-size: 0.9em; /* Зменшуємо розмір тексту */
+  font-size: 1.0em; 
 }
 </style>
 

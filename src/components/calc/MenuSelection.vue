@@ -1,3 +1,4 @@
+// MenuSelection.vue
 <script setup>
 import { computed } from 'vue';
 import { usePopulationStore } from '@/components/calc/population.js';
@@ -128,7 +129,7 @@ function clearSelections() {
 .selectors {
   display: flex;
   flex-direction: column;
-  width: 20%; 
+  width: 100%; 
 }
 
 .cities, .regions, .ages, .types, .sexs, .waves {

@@ -1,21 +1,13 @@
 // Home.vue
 <script setup>
-import { onMounted, computed } from 'vue';
+import { onMounted } from 'vue';
 import { usePopulationStore } from '@/components/calc/population.js';
 import MenuSelection from '@/components/calc/MenuSelection.vue';
 import PopulationSummary from '@/components/calc/PopulationSummary.vue';
+import SearchResultsCities from '@/components/calc/SearchResultsCities.vue';
+import SearchResultsRegions from '@/components/calc/SearchResultsRegions.vue';
 
 const populationStore = usePopulationStore();
-
-const filterPopulationCities = computed(() => {
-  populationStore.filterPopulationDataCities();
-  return populationStore.filteredPopulationDataCities;
-});
-
-const filterPopulationRegion = computed(() => {
-  populationStore.filterPopulationDataRegions();
-  return populationStore.filteredPopulationDataRegions;
-});
 
 onMounted(() => {
   populationStore.loadInitialData();
@@ -24,42 +16,38 @@ onMounted(() => {
 
 <template>
   <div class="container">
-    <MenuSelection />
-    <PopulationSummary />
-    <div>
-      <h3>Результати пошуку по містах:</h3>
-      <ul>
-        <li v-for="item in filterPopulationCities" :key="item.id">
-          Age: {{ item.age }}, Both Sexes: {{ item.both_sexes }}, Males: {{ item.males }},
-          Females: {{ item.females }}, Region: {{ item.region }},
-          Type: {{ item.type }}, City: {{ item.city }}, Wave: {{ item.wave }}
-        </li>
-      </ul>
+    <div class="left-panel">
+      <MenuSelection />
+      <PopulationSummary />
     </div>
-    <div>
-      <h3>Результати пошуку по регіонах:</h3>
-      <ul>
-        <li v-for="item in filterPopulationRegion" :key="item.id">
-          Age: {{ item.age }}, Both Sexes: {{ item.both_sexes }}, Males: {{ item.males }},
-          Females: {{ item.females }}, Region: {{ item.region }},
-          Type: {{ item.type }}, City: {{ item.city }}, Wave: {{ item.wave }}
-        </li>
-      </ul>
+    <div class="right-panel">
+      <SearchResultsCities />
+      <SearchResultsRegions />
     </div>
   </div>
 </template>
 
 <style scoped>
-ul {
-  list-style-type: none;
-  padding: 0;
+.container {
+  display: flex;
+  width: 100%;
+  height: 100vh; /* Висота екрану */
 }
 
-li {
-  padding: 5px;
-  background-color: #f0f0f0;
-  margin: 2px 0;
-  border-radius: 5px;
+.left-panel {
+  width: 30%; /* Ліва панель займає 50% ширини */
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.right-panel {
+  width: 70%; /* Права панель займає 50% ширини */
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start; /* Вирівнювання по вертикалі зверху */
 }
 </style>
 
