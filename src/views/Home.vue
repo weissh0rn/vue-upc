@@ -2,14 +2,20 @@
 <script setup>
 import { onMounted, computed } from 'vue';
 import { usePopulationStore } from '@/components/calc/population.js';
+import { useAuthStore } from '@/stores/auth';
 import MenuSelection from '@/components/calc/MenuSelection.vue';
 import PopulationSummary from '@/components/calc/PopulationSummary.vue';
 import SearchResultsCities from '@/components/calc/SearchResultsCities.vue';
 import SearchResultsRegions from '@/components/calc/SearchResultsRegions.vue';
 
 const populationStore = usePopulationStore();
-
+const authStore = useAuthStore();
 const selectedSex = computed(() => populationStore.selectedSex);
+
+function logout() {
+  authStore.logout();
+  location.reload();
+}
 
 onMounted(() => {
   populationStore.loadInitialData();
@@ -17,6 +23,10 @@ onMounted(() => {
 </script>
 
 <template>
+  <div>
+    <h3>Welcome, {{ authStore.user }}</h3>
+    <button @click="logout">Logout</button>
+  </div>
   <div class="container">
     <div class="left-panel">
       <MenuSelection />
