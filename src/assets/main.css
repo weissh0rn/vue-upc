@@ -4,6 +4,8 @@
 :root {
   --primary-color: #007bff;
   --primary-hover-color: #0056b3;
+  --primary-about-color: #ffff00;
+  --primary-about-hover-color: #ffcc00;
   --background-color: #668cff;
   --error-color: red;
 }
@@ -21,6 +23,7 @@
   align-items: center;
   min-height: 100vh;
   background-color: var(--background-color);
+  position: relative;
 }
 
 .header {
@@ -206,5 +209,45 @@ td {
 .summary-table {
   margin-top: 20px;
   width: 100%; 
+}
+
+/* Login about */
+.about-link {
+  position: absolute;
+  bottom: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.about-link .btn {
+  background: none;
+  border: none;
+  color: var(--primary-about-color);
+  cursor: pointer;
+}
+
+.about-link .btn:hover {
+  color: var(--primary-about-hover-color);
+}
+
+/* About */
+
+.about-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2em;
+  background-color: var(--background-color);
+}
+
+.content {
+  max-width: flex;
+  text-align: center;
+  background-color: #fff;
+  padding: 2em;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 

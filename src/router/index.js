@@ -4,6 +4,7 @@ import Home from '@/views/Home.vue';
 import Login from '@/views/Login.vue';
 import Register from '@/views/Register.vue';
 import UserProfile from '@/components/UserProfile.vue';
+import About from '@/components/About.vue';
 import { useAuthStore } from '@/stores/auth';
 
 const routes = [
@@ -26,6 +27,11 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register
+  },
+  {
+    path: '/about',
+    name: 'About',
+    component: About
   },
   {
     path: '/user-profile',  // Додаємо новий маршрут для UserProfile

@@ -57,6 +57,9 @@ function login() {
         <div v-if="error" class="error">{{ error }}</div>
       </form>
     </div>
+    <router-link to="/about" class="about-link">
+      <button type="button" class="btn btn-link">R&D^2</button>
+    </router-link>
   </div>
 </template>
 
