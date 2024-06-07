@@ -7,14 +7,20 @@ import MenuSelection from '@/components/calc/MenuSelection.vue';
 import PopulationSummary from '@/components/calc/PopulationSummary.vue';
 import SearchResultsCities from '@/components/calc/SearchResultsCities.vue';
 import SearchResultsRegions from '@/components/calc/SearchResultsRegions.vue';
+import { useRouter } from 'vue-router';
 
 const populationStore = usePopulationStore();
 const authStore = useAuthStore();
+const router = useRouter();
 const selectedSex = computed(() => populationStore.selectedSex);
 
 function logout() {
   authStore.logout();
   location.reload();
+}
+
+function goToUserProfile() {
+  router.push({ name: 'UserProfile' });
 }
 
 onMounted(() => {
@@ -29,7 +35,7 @@ onMounted(() => {
         Ukraine Population Calculator
       </div>
       <div class="user-info">
-        <button class="user-button">{{ authStore.user }}</button>
+        <button class="user-button" @click="goToUserProfile">{{ authStore.user }}</button>
         <button class="logout-button" @click="logout">Logout</button>
       </div>
     </div>

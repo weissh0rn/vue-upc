@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import Home from '@/views/Home.vue';
 import Login from '@/views/Login.vue';
 import Register from '@/views/Register.vue';
+import UserProfile from '@/components/UserProfile.vue';
 import { useAuthStore } from '@/stores/auth';
 
 const routes = [
@@ -25,6 +26,12 @@ const routes = [
     path: '/register',
     name: 'Register',
     component: Register
+  },
+  {
+    path: '/user-profile',  // Додаємо новий маршрут для UserProfile
+    name: 'UserProfile',
+    component: UserProfile,
+    meta: { requiresAuth: true }  // Додаємо цей маршрут як захищений
   }
 ];
 
