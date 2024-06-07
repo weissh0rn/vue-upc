@@ -23,7 +23,7 @@ function login() {
 </script>
 
 <template>
-  <div class="container">
+  <div class="container-login">
     <div class="login-form">
       <form @submit.prevent="login">
         <div class="form-group">
@@ -59,58 +59,4 @@ function login() {
     </div>
   </div>
 </template>
-
-<style scoped>
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-color: #668cff;
-}
-
-.login-form {
-  max-width: 400px;
-  width: 100%;
-  padding: 2em;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-.form-group {
-  margin-bottom: 1em;
-}
-
-.form-control {
-  width: 100%;
-  padding: 10px;
-  font-size: 1.2em;
-  box-sizing: border-box;
-}
-
-.btn {
-  width: 100%;
-  padding: 10px;
-  font-size: 1.2em;
-  box-sizing: border-box;
-  background-color: #007bff;
-}
-
-.btn:hover {
-  background-color: #0056b3;
-}
-
-.btn-block {
-  display: block;
-  width: 100%;
-}
-
-.error {
-  color: red;
-  margin-top: 1em;
-  text-align: center;
-}
-</style>
 

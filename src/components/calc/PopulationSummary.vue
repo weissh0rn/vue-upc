@@ -27,7 +27,7 @@ watch(() => props.selectedSex, (newValue) => {
     <table>
       <thead>
         <tr>
-          <th></th>
+          <th>Стать</th>
           <th>Міста</th>
           <th>Регіони</th>
           <th>Загальне</th>
@@ -56,32 +56,4 @@ watch(() => props.selectedSex, (newValue) => {
     </table>
   </div>
 </template>
-
-<style scoped>
-.summary-table {
-  margin-top: 20px;
-  width: 100%; 
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  text-align: left;
-}
-
-th, td {
-  padding: 8px;
-  border: 1px solid #ddd;
-}
-
-th {
-  background-color: #f4f4f4;
-  font-size: 1.0em; 
-}
-
-td {
-  text-align: center;
-  font-size: 1.0em; 
-}
-</style>
 

@@ -126,32 +126,6 @@ function clearSelections() {
 </template>
 
 <style scoped>
-.selectors {
-  display: flex;
-  flex-direction: column;
-  width: 100%; 
-}
-
-.cities, .regions, .ages, .types, .sexs, .waves {
-  flex: 1;
-  margin: 3px;
-}
-
-.age-selectors {
-  display: flex;
-  justify-content: space-between;
-}
-
-.age-selectors .custom-select {
-  flex: 1;
-  margin-right: 5px;
-  max-width: calc(50% - 5px);
-}
-
-.age-selectors .custom-select:last-child {
-  margin-right: 0;
-}
-
 .custom-select .vs__dropdown-menu {
   max-height: 300px;
   overflow-y: auto;
@@ -159,7 +133,7 @@ function clearSelections() {
 }
 
 .custom-select .vs__selected-options {
-  background-color: #f5f5f5;
+  background-color: #c5c5c5;
   border: 1px solid #555;
   border-radius: 4px;
   padding: 5px;
@@ -173,27 +147,11 @@ function clearSelections() {
 }
 
 .custom-select .vs__dropdown-option--selected {
-  background-color: #e0e0e0;
+  background-color: #a0a0a0;
 }
 
 .custom-select .vs__dropdown-option--hover {
-  background-color: #d0d0d0;
-}
-
-.clear-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-top: 10px;
-  width: 100%;
-}
-
-.clear-button:hover {
-  background-color: #0056b3;
+  background-color: #909090;
 }
 </style>
 
