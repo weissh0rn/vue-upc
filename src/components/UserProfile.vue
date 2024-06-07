@@ -28,7 +28,3 @@ function goBackHome() {
   </div>
 </template>
 
-<style scoped>
-/* Використовуйте існуючі стилі з main.css */
-</style>
-

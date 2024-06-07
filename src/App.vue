@@ -4,6 +4,11 @@ import { RouterView } from 'vue-router'
 
 <template>
   <header>
+    <div class="header">
+      <div class="header-app-title">
+        Ukraine Population Calculator
+      </div>
+    </div>
   </header>
 
   <RouterView />

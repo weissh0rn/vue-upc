@@ -6,8 +6,21 @@
   --primary-hover-color: #0056b3;
   --primary-about-color: #ffff00;
   --primary-about-hover-color: #ffcc00;
-  --background-color: #668cff;
+  --background-color: #809fff;
+  --background-header-color: #668cff;
   --error-color: red;
+}
+
+/* Скидання стилів для всього документа */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
 }
 
 .container-home {
@@ -22,7 +35,8 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background-color: var(--background-color);
+  width: 100hv;
+	background: linear-gradient(#19c8ff, #00396c);
   position: relative;
 }
 
@@ -35,14 +49,23 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-  background-color: var(--background-color);
+  background-color: var(--background-header-color);
   border-bottom: 1px solid #ddd;
   z-index: 1000;
 }
 
-.header-title {
+.header-app-title {
   flex: 1;
   text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.header-title {
+  flex: 1;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   font-size: 1.5em;
   font-weight: bold;
 }
@@ -239,7 +262,7 @@ td {
   justify-content: center;
   min-height: 100vh;
   padding: 2em;
-  background-color: var(--background-color);
+	background: linear-gradient(#19c8ff, #00396c);
 }
 
 .content {
