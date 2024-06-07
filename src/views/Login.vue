@@ -95,7 +95,11 @@ function login() {
   padding: 10px;
   font-size: 1.2em;
   box-sizing: border-box;
-  background-color: #3366ff;
+  background-color: #007bff;
+}
+
+.btn:hover {
+  background-color: #0056b3;
 }
 
 .btn-block {
