@@ -17,40 +17,57 @@ const totalBothSexesRegions = computed(() => populationStore.totalBothSexesRegio
 const totalMalesRegions = computed(() => populationStore.totalMalesRegions);
 const totalFemalesRegions = computed(() => populationStore.totalFemalesRegions);
 
+const selectedData = computed(() => {
+  if (props.selectedSex === 'females') {
+    return {
+      sex: 'Жінки',
+      cities: totalFemalesCities.value,
+      regions: totalFemalesRegions.value,
+      total: totalFemalesCities.value + totalFemalesRegions.value
+    };
+  } else if (props.selectedSex === 'males') {
+    return {
+      sex: 'Чоловіки',
+      cities: totalMalesCities.value,
+      regions: totalMalesRegions.value,
+      total: totalMalesCities.value + totalMalesRegions.value
+    };
+  } else if (props.selectedSex === 'both_sexes') {
+    return {
+      sex: 'Разом',
+      cities: totalBothSexesCities.value,
+      regions: totalBothSexesRegions.value,
+      total: totalBothSexesCities.value + totalBothSexesRegions.value
+    };
+  }
+  return {};
+});
+
 watch(() => props.selectedSex, (newValue) => {
   console.log('Selected sex changed:', newValue);
 });
 </script>
 
 <template>
-  <div class="summary-table">
-    <table>
-      <thead>
-        <tr>
-          <th>Стать</th>
-          <th>Міста</th>
-          <th>Регіони</th>
-          <th>Загальне</th>
-        </tr>
-      </thead>
+  <div class="summary-table-container">
+    <label>Населення:</label>
+    <table class="summary-table">
       <tbody>
-        <tr v-if="selectedSex === 'females'">
-          <td>Жінки</td>
-          <td>{{ totalFemalesCities }}</td>
-          <td>{{ totalFemalesRegions }}</td>
-          <td>{{ totalFemalesCities + totalFemalesRegions }}</td>
+        <tr>
+          <td>Стать</td>
+          <td>{{ selectedData.sex }}</td>
         </tr>
-        <tr v-if="selectedSex === 'males'">
-          <td>Чоловіки</td>
-          <td>{{ totalMalesCities }}</td>
-          <td>{{ totalMalesRegions }}</td>
-          <td>{{ totalMalesCities + totalMalesRegions }}</td>
+        <tr>
+          <td>Міста</td>
+          <td>{{ selectedData.cities }}</td>
         </tr>
-        <tr v-if="selectedSex === 'both_sexes'">
-          <td>Разом</td>
-          <td>{{ totalBothSexesCities }}</td>
-          <td>{{ totalBothSexesRegions }}</td>
-          <td>{{ totalBothSexesCities + totalBothSexesRegions }}</td>
+        <tr>
+          <td>Регіони</td>
+          <td>{{ selectedData.regions }}</td>
+        </tr>
+        <tr>
+          <td>Загальне</td>
+          <td>{{ selectedData.total }}</td>
         </tr>
       </tbody>
     </table>

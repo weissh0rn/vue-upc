@@ -126,6 +126,34 @@ function clearSelections() {
 </template>
 
 <style scoped>
+/*
+.selectors {
+  display: flex;
+  flex-direction: column;
+  width: 100%; 
+}
+
+.cities, .regions, .ages, .types, .sexs, .waves {
+  flex: 1;
+  margin: 3px;
+}
+
+.age-selectors {
+  display: flex;
+  justify-content: space-between;
+}
+
+.age-selectors .custom-select {
+  flex: 1;
+  margin-right: 5px;
+  max-width: calc(50% - 5px);
+}
+
+.age-selectors .custom-select:last-child {
+  margin-right: 0;
+}
+*/
+
 .custom-select .vs__dropdown-menu {
   max-height: 300px;
   overflow-y: auto;
@@ -153,5 +181,53 @@ function clearSelections() {
 .custom-select .vs__dropdown-option--hover {
   background-color: #909090;
 }
+
+/*
+.clear-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.clear-button:hover {
+  background-color: var(--primary-hover-color);
+}
+*/
+
+/* Адаптивні стилі */
+/*
+@media (max-width: 768px) {
+  .selectors {
+    flex-direction: column;
+  }
+
+  .age-selectors {
+    flex-direction: column;
+  }
+
+  .age-selectors .custom-select {
+    margin-right: 0;
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .cities, .regions, .ages, .types, .sexs, .waves {
+    margin: 2px;
+  }
+
+  .clear-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+}
+*/
 </style>
 

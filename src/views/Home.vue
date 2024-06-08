@@ -52,3 +52,13 @@ onMounted(() => {
   </div>
 </template>
 
+<style scoped>
+.header-title {
+  flex: 1;
+  text-align: center;
+  font-size: 1.0rem;
+  font-weight: bold;
+}
+
+</style>
+

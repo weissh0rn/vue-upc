@@ -9,6 +9,31 @@
   --background-color: #809fff;
   --background-header-color: #668cff;
   --error-color: red;
+  font-size: 16px; /* Базовий розмір шрифту */
+}
+
+@media (max-width: 1200px) {
+  :root {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 992px) {
+  :root {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 576px) {
+  :root {
+    font-size: 12px;
+  }
 }
 
 /* Скидання стилів для всього документа */
@@ -28,6 +53,7 @@ html, body {
   width: 100%;
   height: 100vh; /* Висота екрану */
   padding-top: 50px; /* Додаємо відступ, щоб контент не заходив під заголовок */
+  flex-wrap: wrap; /* Додаємо можливість переносу рядків */
 }
 
 .container-login {
@@ -35,8 +61,9 @@ html, body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  width: 100hv;
-	background: linear-gradient(#19c8ff, #00396c);
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(#19c8ff, #00396c);
   position: relative;
 }
 
@@ -57,7 +84,7 @@ html, body {
 .header-app-title {
   flex: 1;
   text-align: center;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
@@ -66,24 +93,8 @@ html, body {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 1.5em;
+  font-size: 1.5rem;
   font-weight: bold;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-}
-
-.user-button, .logout-button {
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 5px 15px;
-  cursor: pointer;
-  font-size: 1em;
-  border-radius: 5px;
 }
 
 .user-button {
@@ -91,7 +102,7 @@ html, body {
 }
 
 .logout-button {
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .user-button:hover, .logout-button:hover {
@@ -115,14 +126,14 @@ html, body {
 .form-control {
   width: 100%;
   padding: 10px;
-  font-size: 1.2em;
+  font-size: 1.2rem;
   box-sizing: border-box;
 }
 
 .btn {
   width: 100%;
   padding: 10px;
-  font-size: 1.2em;
+  font-size: 1.2rem;
   box-sizing: border-box;
   background-color: var(--primary-color);
 }
@@ -143,19 +154,51 @@ html, body {
 }
 
 .left-panel {
-  width: 30%;
+  flex: 1 1 30%; /* Гнучке розширення і звуження панелі */
   padding: 10px;
   box-sizing: border-box;
 }
 
 .right-panel {
-  width: 70%;
+  flex: 1 1 70%; /* Гнучке розширення і звуження панелі */
   padding: 10px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
   justify-content: flex-start;
+}
+
+/* Адаптивні стилі */
+@media (max-width: 768px) {
+  .left-panel, .right-panel {
+    flex: 1 1 100%; /* Панелі займають всю ширину на малих екранах */
+  }
+
+  .selectors {
+    flex-direction: column;
+  }
+
+  .age-selectors {
+    flex-direction: column;
+  }
+
+  .age-selectors .custom-select {
+    margin-right: 0;
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .cities, .regions, .ages, .types, .sexs, .waves {
+    margin: 2px;
+  }
+
+  .clear-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
 }
 
 /* MenuSelection */
@@ -187,7 +230,7 @@ html, body {
 
 .clear-button {
   padding: 10px 20px;
-  font-size: 16px;
+  font-size: 1rem;
   background-color: var(--primary-color);
   color: #fff;
   border: none;
@@ -199,6 +242,33 @@ html, body {
 
 .clear-button:hover {
   background-color: var(--primary-hover-color);
+}
+
+@media (max-width: 768px) {
+  .selectors {
+    flex-direction: column;
+  }
+
+  .age-selectors {
+    flex-direction: column;
+  }
+
+  .age-selectors .custom-select {
+    margin-right: 0;
+    max-width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .cities, .regions, .ages, .types, .sexs, .waves {
+    margin: 2px;
+  }
+
+  .clear-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
 }
 
 /* SearchResultsCities & SearchResultsRegions */
@@ -220,18 +290,95 @@ th, td {
 
 th {
   background-color: #ccd9ff;
-  font-size: 1.0em; 
+  font-size: 1rem; 
 }
 
 td {
   text-align: center;
-  font-size: 1.0em; 
+  font-size: 1rem; 
+}
+
+.results-table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.results-table th, .results-table td {
+  padding: 8px;
+  border: 1px solid #aaa;
+}
+
+.results-table th {
+  background-color: #ccd9ff;
+  font-size: 1rem;
+}
+
+.results-table td {
+  text-align: center;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .results-table th, .results-table td {
+    font-size: 0.9rem;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 576px) {
+  .results-table th, .results-table td {
+    font-size: 0.7rem;
+    padding: 2px;
+  }
 }
 
 /* PopulationSummary */
+/*
 .summary-table {
   margin-top: 20px;
   width: 100%; 
+}
+*/
+.summary-table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.summary-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.summary-table td {
+  padding: 8px;
+  border: 1px solid #aaa;
+}
+
+.summary-table td:first-child {
+  font-weight: bold;
+}
+
+@media (max-width: 768px) {
+  .summary-table td {
+    font-size: 0.9rem;
+    padding: 6px;
+  }
+}
+
+@media (max-width: 576px) {
+  .summary-table td {
+    font-size: 0.8rem;
+    padding: 4px;
+  }
 }
 
 /* Login about */
@@ -254,7 +401,6 @@ td {
 }
 
 /* About */
-
 .about-container {
   display: flex;
   flex-direction: column;
@@ -262,15 +408,127 @@ td {
   justify-content: center;
   min-height: 100vh;
   padding: 2em;
-	background: linear-gradient(#19c8ff, #00396c);
+  background: linear-gradient(#19c8ff, #00396c);
 }
 
 .content {
   max-width: flex;
-  text-align: center;
+  text-align: justify;
   background-color: #fff;
   padding: 2em;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  margin-top: 100px; /* Відступ, щоб контент не заходив під заголовок */
 }
 
+/* Home */
+
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.user-button, .logout-button {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 5px 15px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+.user-button {
+  margin-right: 10px;
+}
+
+.logout-button {
+  margin-right: 5px;
+}
+
+.user-button:hover, .logout-button:hover {
+  background-color: var(--primary-hover-color);
+}
+
+.container-home {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  padding-top: 50px;
+  flex-wrap: wrap;
+}
+
+.left-panel {
+  flex: 1 1 30%;
+  padding: 10px;
+  box-sizing: border-box;
+  order: 1;
+}
+
+.right-panel {
+  flex: 1 1 70%;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  order: 2;
+}
+
+@media (max-width: 768px) {
+  .header-title {
+    font-size: 1.2rem;
+  }
+
+  .user-button, .logout-button {
+    font-size: 0.9rem;
+    padding: 5px 10px;
+  }
+
+  .container-home {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .left-panel, .right-panel {
+    flex: 1 1 100%;
+  }
+
+  .left-panel {
+    order: 1;
+  }
+
+  .right-panel {
+    order: 2;
+  }
+}
+
+@media (max-width: 576px) {
+  .header-title {
+    font-size: 1rem;
+  }
+
+  .user-button, .logout-button {
+    font-size: 0.8rem;
+    padding: 3px 5px;
+  }
+
+  .container-home {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .left-panel, .right-panel {
+    flex: 1 1 100%;
+  }
+
+  .left-panel {
+    order: 1;
+  }
+
+  .right-panel {
+    order: 2;
+  }
+}
