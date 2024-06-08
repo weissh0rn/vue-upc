@@ -18,7 +18,8 @@ It should have the following functionalities:
 3. Option to select age groups.
 
 ```
-[Google Docs laboratory report #1](https://docs.google.com/document/d/1DO1GnepdvU4uVFkebUllpr9_WH6HBv6UIGImmIhkV3E/edit\)
+[Google Docs laboratory report #1](https://docs.google.com/document/d/142StbBMLg4JFI_bZUSDVSXQnY9kdvT8vNSqCyK1nM2g/edit?usp=sharing)
+
 [github](https://github.com/weissh0rn/vue-upc)
 
 
