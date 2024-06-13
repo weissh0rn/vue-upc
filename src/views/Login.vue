@@ -58,7 +58,7 @@ function login() {
       </form>
     </div>
     <router-link to="/about" class="about-link">
-      <button type="button" class="btn btn-link">R&D^2</button>
+      <button type="button" class="btn">R&D^2</button>
     </router-link>
   </div>
 </template>

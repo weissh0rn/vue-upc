@@ -13,7 +13,7 @@ function goBack() {
   <div class="about-container">
     <div class="header">
       <div class="header-title">
-        About "Ukrain Population Calculator"
+        About "Ukraine Population Calculator"
       </div>
       <div class="user-info">
         <button class="logout-button" @click="goBack">Back</button>
@@ -27,7 +27,7 @@ function goBack() {
 				</p>
 				<p>
 					<h3>
-						Developer: Viacheslav Us KV-32mp
+	          Developer: Viacheslav Us KV-32mp 
 					</h3>
 				</p>
     </div>

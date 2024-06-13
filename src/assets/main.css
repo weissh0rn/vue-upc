@@ -101,9 +101,11 @@ html, body {
   margin-right: 10px;
 }
 
+/*
 .logout-button {
   margin-right: 10px;
 }
+*/
 
 .user-button:hover, .logout-button:hover {
   background-color: var(--primary-hover-color);

@@ -14,7 +14,7 @@ const filterPopulationCities = computed(() => {
 <template>
   <div class="results-table">
     <label>Результати пошуку по містах:</label>
-    <table>
+    <table class="summary-table">
       <thead>
         <tr>
           <th>Вік</th>
