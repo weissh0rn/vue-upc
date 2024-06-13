@@ -19,6 +19,7 @@ It should have the following functionalities:
 
 ```
 [Google Docs laboratory report #1](https://docs.google.com/document/d/142StbBMLg4JFI_bZUSDVSXQnY9kdvT8vNSqCyK1nM2g/edit?usp=sharing)
+[Google Docs laboratory report #2](https://docs.google.com/document/d/1-iLtNtJHSxlhf48-690zbDRSzdExF8Gfgu_2o-UGrOc/edit?usp=sharing)
 
 [github](https://github.com/weissh0rn/vue-upc)
 
